@@ -9,12 +9,13 @@ async function scrapeSite() {
   await page.waitForSelector('div', { timeout: 2000 });
   const stocksEval = await page.evaluate(() => {
     const stocks = [];
-    document.querySelectorAll('div').forEach((elem) => {
+    document.querySelectorAll('#widget-market-quotes-container > div > div.market-quotes-widget__symbols').forEach((elem) => {
       try {
         const name = elem.querySelector('a').outerText;
-        const value = elem.querySelector('#widget-market-quotes-container > div > div.market-quotes-widget__symbols > div:nth-child(2) > div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--last.market-quotes-widget__field--row-cell').outerText;
-        console.log('nome:', name, 'valor:', value);
+        const value = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--last.market-quotes-widget__field--row-cell').outerText;
+        console.log('nome:', name, 'value: ', value);
         stocks.push({ name, value });
+
       } catch (error) {
         console.error('Error scraping stock data:', error);
       }
