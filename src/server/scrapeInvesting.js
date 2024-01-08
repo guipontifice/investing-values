@@ -6,21 +6,21 @@ async function scrapeSite() {
   const url = urlLink();
   await page.goto(url);
 
-  await page.waitForSelector('div', { timeout: 2000 });
+  await page.waitForSelector('#widget-market-quotes-container > div > div.market-quotes-widget__symbols', { timeout: 2000 });
   const stocksEval = await page.evaluate(() => {
     const stocks = [];
     document.querySelectorAll('#widget-market-quotes-container > div > div.market-quotes-widget__symbols').forEach((elem) => {
       try {
         const name = elem.querySelector('a').outerText;
-        const value = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--last.market-quotes-widget__field--row-cell').outerText;
-        console.log('nome:', name, 'value: ', value);
+        const value = elem.querySelector('div.js-symbol-last.market-quotes-widget__ellipsis-value').outerText;
         stocks.push({ name, value });
-
+        console.log('nome:', name, 'value: ', value);
+        //it worked, showed me values, but only one name, then it didn't show anymore
       } catch (error) {
         console.error('Error scraping stock data:', error);
       }
+      return stocks;
     });
-    return stocks;
   });
   await browser.close();
   return stocksEval;
