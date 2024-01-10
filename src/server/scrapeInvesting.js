@@ -14,9 +14,14 @@ async function scrapeSite() {
       try {
         const name = elem.querySelector('a').outerText;
         const value = elem.querySelector('div.js-symbol-last.market-quotes-widget__ellipsis-value').outerText;
-        const valuation = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--change.market-quotes-widget__field--row-cell > div').outerText;
-        console.log('nome:', name, 'value: ', value, 'valuation: ', valuation);
-        stocks.push({ name, value, valuation });
+        const variation = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--change.market-quotes-widget__field--row-cell > div').outerText;
+        const varPercent = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--open.market-quotes-widget__field--row-cell > div').outerText;
+        const opening = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--open.market-quotes-widget__field--row-cell > div').outerText;
+        const max = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--high.market-quotes-widget__field--row-cell > div').outerText;
+        const min = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--low.market-quotes-widget__field--row-cell > div').outerText;
+        const previous = elem.querySelector('div.market-quotes-widget__field--block > div.market-quotes-widget__field.market-quotes-widget__field--close.market-quotes-widget__field--row-cell > div').outerText;
+        console.log('nome:', name, 'value: ', value, 'variation: ', variation, 'varPercent: ', varPercent, 'opening: ', opening, 'max: ', max, 'min: ', min, 'previous: ', previous);
+        stocks.push({ name, value, variation, varPercent, opening, max, min, previous });
         //it worked, showed me values, but only one name, then it didn't show anymore, and then showed again/error
       } catch (error) {
         console.error('Error scraping stock data:', error);
