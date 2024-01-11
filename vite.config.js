@@ -4,9 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  devServer: {
+    hot: true
+  },
   server: {
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api/stocks': 'http://localhost:3000',
       }
   }
 
