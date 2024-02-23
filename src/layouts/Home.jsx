@@ -13,31 +13,32 @@ function Home() {
   }, []);
 
   return (
-    <div className='flex flex-row'>
-      <div className='m-20 p-3'>
-        <div className='flex flex-row m-2'>
-          <h2>Nome</h2>
-          <p>Valor</p>
-          <p>Variação</p>
-          <p>Var%</p>
-          <p>Abertura</p>
-          <p>Máx</p>
-          <p>Mín</p>
-          <p>Anterior</p>
+    <div className='flex flex-row w-full'>
+      <div className='flex flex-col p-3'>
+        <div className='grid grid-cols-9 gap-4 items-center'>
+          <h2 className='col-span-2 mx-2'>Name</h2>
+          <p className='m-2'>Valor</p>
+          <p className='m-2'>Variação</p>
+          <p className='m-2'>Var%</p>
+          <p className='m-2'>Abertura</p>
+          <p className='m-2'>Máx</p>
+          <p className='m-2'>Mín</p>
+          <p className='m-2'>Anterior</p>
         </div>
         {stocks ? (
           stocks.map((stock, index) => (
-
             <div key={index} className='flex border-2'>
-              <div className='flex flex-row'>
-                <h2 className='m-2'>{stock.name}</h2>
-                <p>{stock.value}</p>
-                <p className={(1 /(stock.variation * 0)) === 1/0 ? 'text-black' : 'text-red'}>{stock.variation}</p>
-                <p className={(1 /(stock.varPercent * 0)) === 1/0 ? 'text-black' : 'text-red'}>{stock.varPercent}%</p>
-                <p className={(1 /(stock.opening * 0)) === 1/0 ? 'text-black' : 'text-red'}>{stock.opening}</p>
-                <p>{stock.max}</p>
-                <p>{stock.min}</p>
-                <p>{stock.previous}</p>
+              <div key={index} className='grid grid-cols-9 gap-4 items-center'>
+                <h2 className='col-span-2 mx-2'>{stock.name}</h2>
+                <p className='m-5'>{stock.value}</p>
+                <p className={`m-5 ${((1 / (stock.variation * 0)) === 1 / 0 ? 'text-black' : 'text-red')}`}>
+                  {stock.variation}
+                </p>
+                <p className={`m-5 ${(1 / (stock.varPercent * 0)) === 1 / 0 ? 'text-black' : 'text-red'}`}>{stock.varPercent}%</p>
+                <p className={`m-5 ${(1 / (stock.opening * 0)) === 1 / 0 ? 'text-black' : 'text-red'}`}>{stock.opening}</p>
+                <p className='m-5'>{stock.max}</p>
+                <p className='m-5'>{stock.min}</p>
+                <p className='m-5'>{stock.previous}</p>
               </div>
             </div>
           ))
