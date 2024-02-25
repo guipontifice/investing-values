@@ -28,9 +28,9 @@ function Home() {
         {stocks ? (
           stocks.map((stock, index) => (
             <div key={index} className='flex border-2'>
-              <div key={index} className='grid grid-cols-9 gap-4 items-center'>
+              <div key={index} className='w-full grid grid-cols-9 gap-3 items-center'>
                 <h2 className='col-span-2 mx-2'>{stock.name}</h2>
-                <p className='m-5'>{stock.value}</p>
+                  <p className='align-middle flex flex-col m-5'>{stock.value}</p>
                 <p className={`m-5 ${((1 / (stock.variation * 0)) === 1 / 0 ? 'text-black' : 'text-red')}`}>
                   {stock.variation}
                 </p>
