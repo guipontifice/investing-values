@@ -24,7 +24,7 @@ function Home() {
           onChange={(event) => setQuery(event.target.value)} />
 
         <div className='grid grid-cols-9 gap-4 items-center border-2 mb-3'>
-          <h2 className='col-span-2 mx-2'>Name</h2>
+          <h2 className='col-span-2 mx-2'>Nome</h2>
           <p className='m-2'>Valor</p>
           <p className='m-2'>Variação</p>
           <p className='m-2'>Var%</p>
@@ -37,7 +37,7 @@ function Home() {
           stocks.filter(stock => 
             stock.name.toLowerCase().includes(query)
           ).map((stock, index) => (
-            <div key={index} className='flex border-2 mb-1 text-xs'>
+            <div key={index} className='flex border-2 mb-1 text-xs hover:scale-110'>
               <div key={index} className='w-full grid grid-cols-9 gap-3 items-center'>
                 <h2 className='col-span-2 mx-2'>{stock.name}</h2>
                 <p className='align-middle flex flex-col m-5'>{stock.value}</p>
